@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="questionDao">
+	<insert id="insert" parameterType="home.inside.supporter.vo.QuestionVo">
+		INSERT INTO QUESTION(NUM, ASKTYPE, NICKNAME, TITLE, CONTENT, ANSWER, ASKDATE, ANSWERDATE)
+		VALUES (QUESTION_SEQ.nextval, #{ASKTYPE}, #{NICKNAME}, #{TITLE}, #{CONTENT},
+		null, SYSDATE, null)
+	</insert>
+	
+	<insert id="insertcmd" parameterType="home.inside.supporter.vo.QuestionCommand">
+		INSERT INTO QUESTION(NUM, ASKTYPE, NICKNAME, TITLE, CONTENT)
+		VALUES (QUESTION_SEQ.nextval, #{ASKTYPE}, #{NICKNAME}, #{TITLE}, #{CONTENT})
+	</insert>
+	
+	<update id="update" parameterType="home.inside.supporter.vo.QuestionVo">
+		UPDATE QUESTION SET 
+		      TITLE = #{TITLE},
+		      CONTENT = #{CONTENT},
+		      ANSWER = #{ANSWER},
+		      ANSWERDATE = SYSDATE
+		      WHERE NUM = #{NUM}
+	</update>
+	
+	<select id="selectall" parameterType="java.util.HashMap" resultType="java.util.List">
+		SELECT  NUM, ASKTYPE, NICKNAME, TITLE, CONTENT, ANSWER, ASKDATE, ANSWERDATE
+		FROM QUESTION
+	</select>
+	
+	<select id="selectone" parameterType="int" resultType="home.inside.supporter.vo.QuestionVo">
+		SELECT NUM, ASKTYPE, NICKNAME, TITLE, CONTENT, ANSWER, ASKDATE, ANSWERDATE
+		FROM QUESTION WHERE NUM = #{NUM}
+	</select>
+	
+	<delete id="deletequestion" parameterType="string">
+		DELETE FROM QUESTION WHERE NUM = #{NUM}
+    </delete>
+    </mapper>
+	
