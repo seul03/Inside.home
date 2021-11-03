@@ -78,11 +78,11 @@ public class mgrQuestionController {
 		model.addAttribute("selectAll", service.selectAll(asktype, nickname));
 		
 		if(nickname != "manager" && vo.getAnswer() == null) {
-			return "manager/supporter/QuestionList";
+			return "manager/supporter/questionList";
 		} else if(vo.getAnswer() != null) {
 			return "forward:/user/supporter/selectAll";
 		} else {
-			return "manager/supporter/QaList";
+			return "manager/supporter/qaList";
 		}
 	}
 	//내용확인
