@@ -5,12 +5,12 @@
 			<div class="q_hgroup">
 				<h2 class="tlt">고객문의</h2>
 			</div>
-			<nav id="ln" class="ln">
 				<ul>
-					<li><a herf="/manager/supporter/qalist">Q&A</a></li>
-					<li><a herf="/manager/supporter/updateQuestion">고객문의</a></li>
+					<li>
+					<a herf="/manager/supporter/qalist">Q&A</a>
+					<a herf="/manager/supporter/updateQuestion">고객문의</a>
+					</li>
 				</ul>
-			</nav>
 		</div>
 	</aside>
 	<thead>

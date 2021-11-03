@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import home.inside.supporter.service.IQuestionService;
 import home.inside.supporter.vo.QuestionVo;
 
@@ -61,6 +63,14 @@ public class mgrQuestionController {
 	public String SelectAll(String asktype, String nickname, Model model) throws Exception {
 		QuestionVo vo = new QuestionVo();
 		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("manager/supporter/qalist");
+		mv.setViewName("manager/supporter/questionlist");
+		mv.addObject("asktype", vo.getAskType());
+		mv.addObject("title", vo.getTitle());
+		mv.addObject("content", vo.getContent());
+		mv.addObject("answer", vo.getAnswer());
+		
 		HashMap<String, Object> hashMap = new HashMap<>();
 		hashMap.put("asktype", asktype);
 		hashMap.put("nickname", nickname);
@@ -78,7 +88,7 @@ public class mgrQuestionController {
 	//내용확인
 	@RequestMapping(value="/manager/question/detail.do", method=RequestMethod.POST)
 	public String SelectOne(int num, Model model) throws Exception {
-		return "manager/supporter/Qadetail";
+		return "manager/supporter/Questiondetail";
 		
 
 }

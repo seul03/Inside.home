@@ -35,6 +35,7 @@ public class QuestionController {
 		mv.setViewName("user/supporter/questionlist");
 		mv.addObject("title", vo.getTitle());
 		mv.addObject("content", vo.getContent());
+		mv.addObject("answer", vo.getAnswer());
 		
 		model.addAttribute("selectAll", service.selectAll(type, nickname));
 		if(vo.getNickname() != "manager") {

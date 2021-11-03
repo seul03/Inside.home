@@ -1,8 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/main/java=utf-8
 encoding//src/main/webapp/WEB-INF/views/manager/supporter/insertQa.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/manager/supporter/qaDetail.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/manager/supporter/qaList.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/manager/supporter/questionDetail.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/manager/supporter/questionList.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/manager/supporter/updateQa.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/manager/supporter/updateQuestion.jsp=UTF-8
