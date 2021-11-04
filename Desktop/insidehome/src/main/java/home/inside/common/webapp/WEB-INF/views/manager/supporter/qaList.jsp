@@ -1,17 +1,15 @@
 <%@ include file="/WEB-INF/views/manager/main/mgrHeader.jsp"%>
 <form:form action="insertQa.do" commandName="QuestionVo" method="POST">
 	<aside id="aside">
-		<div class="a_inner">
 			<div class="q_hgroup">
 				<h2 class="tlt">고객문의</h2>
 			</div>
 				<ul>
 					<li>
-					<a herf="/manager/supporter/qalist">Q&A</a>
-					<a herf="/manager/supporter/updateQuestion">고객문의</a>
+					<a herf="/manager/question/list.do">Q&A</a>
+					<a herf="/manager/question/list.do">고객문의</a>
 					</li>
 				</ul>
-		</div>
 	</aside>
 	<thead>
 	<nav class="qa_title">
@@ -34,11 +32,11 @@
 	<tbody>
 	<selection class="qa_content">
 	<div class="tab_list">
-		<c:forEach item="${question} var="questionVo">
+		<c:forEach item="${selectAll} var="list">
 			<tr>
-				<td>${questionVo.title}</td>
+				<td>${title}</td>
 				<div class="side_menu" onclick="sideMenu();">
-				<td>${questionVo.askdate}</td>
+				<td>${content}</td>
 				</div>
 		</c:forEach>
 		</tr>

@@ -41,11 +41,11 @@ public class mgrQuestionController {
 	@RequestMapping(value="/manager/question/update.do", method=RequestMethod.GET)
 	public String updateQuestionForm(int num, Model model) throws Exception {
 		QuestionVo vo = new QuestionVo();
-		
+				
 		if(vo.getNickname() != "manager") {
-			return "manager/supporter/UpdateQuestion";
+			return "manager/supporter/updateQuestion";
 		} else {
-			return "manager/supporter/UpdateQa"; 
+			return "manager/supporter/updateQa"; 
 	}
 	}
     //고객문의 수정(고객문의 답변등록, q&a 수정) 요청
@@ -66,10 +66,10 @@ public class mgrQuestionController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("manager/supporter/qalist");
 		mv.setViewName("manager/supporter/questionlist");
+		mv.addObject("num", vo.getNum());
 		mv.addObject("asktype", vo.getAskType());
 		mv.addObject("title", vo.getTitle());
 		mv.addObject("content", vo.getContent());
-		mv.addObject("answer", vo.getAnswer());
 		
 		HashMap<String, Object> hashMap = new HashMap<>();
 		hashMap.put("asktype", asktype);
@@ -88,6 +88,7 @@ public class mgrQuestionController {
 	//내용확인
 	@RequestMapping(value="/manager/question/detail.do", method=RequestMethod.POST)
 	public String SelectOne(int num, Model model) throws Exception {
+		model.addAttribute("selectOne",service.selectOne(num) );
 		return "manager/supporter/Questiondetail";
 		
 

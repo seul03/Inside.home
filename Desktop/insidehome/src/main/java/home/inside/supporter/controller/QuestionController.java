@@ -33,6 +33,7 @@ public class QuestionController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("user/supporter/qalist");
 		mv.setViewName("user/supporter/questionlist");
+		mv.addObject("num", vo.getNum());
 		mv.addObject("title", vo.getTitle());
 		mv.addObject("content", vo.getContent());
 		mv.addObject("answer", vo.getAnswer());

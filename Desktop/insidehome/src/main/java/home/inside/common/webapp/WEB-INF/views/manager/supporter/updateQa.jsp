@@ -1,30 +1,22 @@
 <%@ include file="/WEB-INF/views/manager/main/mgrHeader.jsp"%>
-<form:form action="insertQa.do" commandName="QuestionVo" method="POST">
+<form action="/manager/question/list.do" method="POST">
 	<aside id="aside">
-		<div class="a_inner">
-			<div class="q_hgroup">
 				<h2 class="tlt">고객문의</h2>
-			</div>
-			<nav id="ln" class="ln">
 				<ul>
-					<li><a herf="/manager/supporter/qalist">Q&A</a></li>
-					<li><a herf="/manager/supporter/updateQuestion">고객문의</a></li>
+					<li>
+					<a herf="/manager/supporter/qalist">Q&A</a>
+					<a herf="/manager/supporter/updateQuestion">고객문의</a></li>
 				</ul>
-			</nav>
-		</div>
 	</aside>
 	<thead>
-		<div class="tab_list">
 			<h3 class="tlt">Q&A</h3>
-			</ul>
-		</div>
 	</thead>
 	<tbody>
 		<td class="table-inner"><b>분류</b></td>
 		<td class="table-inner"><b>질문</b></td>
 		<td class="table-inner"><b>내용</b></td>
 
-		<c:forEach item="${question} var="questionVo">
+		<c:forEach item="${updateQuestionSubmit} var="questionVo">
 			<tr>
 				<td>${questionVo.asktype}</td>
 				<td>${questionVo.title}</td>
@@ -63,5 +55,5 @@
 		<input type="submit" value="등록">
 	</div>
 	</div>
-</form:form>
+	</form>
 <%@ include file="/WEB-INF/views/manager/main/mgrFooter.jsp"%>

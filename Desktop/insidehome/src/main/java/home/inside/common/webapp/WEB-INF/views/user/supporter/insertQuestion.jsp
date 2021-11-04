@@ -3,13 +3,14 @@
 <form action="/user/question/list.do" method="POST">
 <link href="<%=request.getContextPath()%>/resources/css/style.css" rel="stylesheet">
 <div class="aside">
-<tr class="ul">
- <li><a href="<c:url value="/user/question/list.do"/>">Q&A</a></li>
- <li><a href="<c:url value="/user/question/insert.do"/>">고객문의</a></li>
- <li><a href="<c:url value="/user/question/list.do"/>">내 문의</a></li>
-</tr>
+<ul>
+ <li>
+ <a href="<c:url value="/user/question/list.do"/>">Q&A</a>
+ <a href="<c:url value="/user/question/insert.do"/>">고객문의</a>
+ <a href="<c:url value="/user/question/list.do"/>">내 문의</a>
+ </li>
+ </ul>
 </div>
-<body>
 <h3 class="tlt">고객문의</h3>
 <thead>
 <div>문의 종류 </div>
@@ -29,7 +30,7 @@
 </tr>
 
 <tr>
-<div align="center">내용</div>
+<div align="left">내용</div>
 <textarea name="content" rows="15" cols="70"></textarea>
 </tr>
 </tbody>

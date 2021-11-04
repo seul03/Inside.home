@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/views/user/main/userHeader.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<form action="/user/warning/insert.do" method="POST">
+<form action="inside/main.do" method="POST">
 <div class="margin">
 <link href="/resources/css/style.css" rel="stylesheet">
 <table>

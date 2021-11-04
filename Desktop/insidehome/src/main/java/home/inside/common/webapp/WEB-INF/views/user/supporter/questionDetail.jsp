@@ -3,18 +3,14 @@
 <form:form action="questionList.do" commandName="QuestionVo" method="POST">
 <link href="resources/css/style.css" rel="stylesheet" type="text/css">
 	<aside id="aside">
-		<div class="a_inner">
-			<div class="q_hgroup">
 				<h2 class="tlt">고객문의</h2>
-			</div>
 				<ul>
 					<li>
-					<a herf="/user/supporter/qalist">Q&A</a>
-					<a herf="/user/supporter/insertQuestion">고객문의</a>
-					<a herf="/user/supporter/questionlist">내 문의</a>
+					<a herf="/user/question/list.do">Q&A</a>
+					<a herf="/user/question/list.do">고객문의</a>
+					<a herf="/user/question/insert.do">내 문의</a>
 					</li>
 				</ul>
-		</div>
 	</aside>
 		<h3 class="tlt">내 문의</h3>
 	<thead>
@@ -42,5 +38,6 @@
 	</c:if>
 	</c:foreach>
 	</tbody>
+    <input type="button" value="목록" a href="/user/question/list.do">
 	</form:form>
 	<%@ include file="/WEB-INF/views/user/main/userFooter.jsp"%>
