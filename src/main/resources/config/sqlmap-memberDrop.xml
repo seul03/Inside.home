@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberDropDao">
+	<insert id="insertDropInfo" parameterType="memberDropVo">
+		insert into MEMBER_DROP(NUM, EMAIL, NICKNAME, WARNCOUNT)
+		values (MEMBER_DROP_SEQ.nextval, #{email}, #{nickname}, #{warnCount})
+	</insert>
+	<select id="emailCheckDrop" parameterType="String" resultType="int">
+		select count(*) from MEMBER_DROP where EMAIL=#{email}
+	</select>
+	<select id="nicknameCheckDrop" parameterType="String" resultType="int">
+		select count(*) from MEMBER_DROP where NICKNAME=#{nickname}
+	</select>
+	<select id="selectDropList" resultType="HashMap">
+		select EMAIL, NICKNAME, WARNCOUNT, DROPDATE
+		from (select * from MEMBER_DROP order by DROPDATE desc)
+        <!-- where rownum >=0 and rownum<=20 -->
+	</select>
+	<select id="searchDropList" parameterType="String" resultType="HashMap">
+		select EMAIL, NICKNAME, WARNCOUNT, DROPDATE 
+		from (select * from MEMBER_DROP
+        		where NICKNAME like '%'||#{nickname}||'%' ORDER BY DROPDATE DESC)
+		<!-- where rownum>0 and rownum<=20; -->
+
+	</select>
+</mapper>

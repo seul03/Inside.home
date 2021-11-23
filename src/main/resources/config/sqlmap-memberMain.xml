@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberMainDao">
+	<insert id="insertMainInfo" parameterType="memberMainVo">
+		insert into MEMBER_MAIN(NUM, EMAIL, NICKNAME, PASSWORD)
+		values(MEMBER_MAIN_SEQ.nextval, #{email}, #{nickname}, #{password})
+	</insert>
+	<select id="selectMainInfo" parameterType="String" resultType="HashMap">
+		select EMAIL, NICKNAME from MEMBER_MAIN where NICKNAME=#{nickname}
+	</select>
+	<select id="selectMainList" resultType="HashMap">
+		select EMAIL, NICKNAME, REGDATE, LOGINTIME 
+        from (select * from MEMBER_MAIN order by regdate desc)
+        <!-- where rownum >=0 and rownum<=20 -->
+	</select>
+	<select id="searchMainList" parameterType="String" resultType="HashMap">
+		select EMAIL, NICKNAME, REGDATE, LOGINTIME 
+		from (select * from MEMBER_MAIN
+        		where NICKNAME like '%'||#{nickname}||'%' ORDER BY REGDATE DESC)
+		<!-- where rownum>0 and rownum<=20; -->
+	</select>
+	<update id="updatePw" parameterType="HashMap">
+		update MEMBER_MAIN set PASSWORD=#{newPassword} where NICKNAME=#{nickname}
+	</update>
+	<delete id="deleteMainInfo" parameterType="String">
+		delete from MEMBER_MAIN where NICKNAME=#{nickname}
+	</delete>
+	
+	
+	<select id="selectLoginInfo" parameterType="String" resultType="HashMap">
+		select EMAIL, NICKNAME, LOGINOPTION from MEMBER_MAIN where SESSIONID=#{sessionId}
+	</select>
+	<select id="selectIsEqualsToInsert" parameterType="HashMap" resultType="String">
+		select NICKNAME from MEMBER_MAIN where EMAIL=#{email} and PASSWORD=#{password}
+	</select>
+	<update id="updateLoginSuccess" parameterType="HashMap">
+		update MEMBER_MAIN set LOGINTIME=sysdate 
+		<if test="sessionId!=null">
+		, SESSIONID=#{sessionId}, LOGINOPTION=#{loginOption} 
+		</if>
+		where EMAIL=#{email}
+	</update>
+	<select id="emailCheck" parameterType="String" resultType="int">
+		select count(*) from MEMBER_MAIN where EMAIL=#{email}
+	</select>
+	<select id="nicknameCheck" parameterType="String" resultType="int">
+		select count(*) from MEMBER_MAIN where NICKNAME=#{nickname}
+	</select>
+	<select id="tmpLogin" parameterType="String" resultType="HashMap">
+		select main.NICKNAME, main.PASSWORD, 
+				sub.WARNCOUNT 
+		from MEMBER_MAIN main, MEMBER_SUB sub  
+		where main.EMAIL=#{email} and main.NICKNAME = sub.NICKNAME
+	</select>
+	
+	
+	
+	<select id="emailFind" parameterType="HashMap" resultType="String">
+		select main.EMAIL from MEMBER_MAIN main, MEMBER_ADDR addr
+		where addr.PHONE1=#{phone1} and addr.PHONE2=#{phone2} and main.EMAIL like '%'||#{email}
+	</select>
+	<select id="passwordFind" parameterType="HashMap" resultType="String">
+		select main.EMAIL from MEMBER_MAIN main, MEMBER_ADDR addr
+		where addr.PHONE1=#{phone1} and addr.PHONE2=#{phone2} and main.EMAIL=#{email}
+	</select>
+	<select id="selectInfo" parameterType="String" resultType="memberInfoDto">
+		select main.EMAIL, main.NICKNAME, main.LOGINTIME, main.REGDATE,
+    			sub.NAME, sub.GENDER, sub.STOREDATE,
+			    addr.PHONE1, addr.PHONE2, addr.ADDRNUM, addr.ADDR, addr.ADDRSUB
+    	from MEMBER_MAIN main, MEMBER_SUB sub, MEMBER_ADDR addr
+    	where main.NICKNAME = sub.NICKNAME
+        		and sub.NICKNAME = addr.NICKNAME
+		        and addr.NICKNAME = #{nickname}
+	</select>
+</mapper>
